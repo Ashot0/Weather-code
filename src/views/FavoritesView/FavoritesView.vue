@@ -1,6 +1,5 @@
 <template>
 	<div class="favorites">
-		<!-- <h1>{{ $t('favorites') }}</h1> -->
 		<FavoritesList />
 		<WeatherSchedule />
 	</div>
