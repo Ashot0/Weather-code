@@ -1,14 +1,14 @@
-import { createStore } from 'vuex'
+import { createStore } from 'vuex';
+import timeTemp from './modules/timeTemp';
+import city from './modules/city';
+import cities from './modules/cities';
+import settings from './modules/settings';
 
 export default createStore({
-  state: {
-  },
-  getters: {
-  },
-  mutations: {
-  },
-  actions: {
-  },
-  modules: {
-  }
-})
+	modules: {
+		timeTemp,
+		city,
+		cities,
+		settings,
+	},
+});
