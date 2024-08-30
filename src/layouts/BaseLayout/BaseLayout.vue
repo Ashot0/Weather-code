@@ -9,12 +9,9 @@
 				<router-link class="layout__link" to="/favorites">{{
 					$t('favorites')
 				}}</router-link>
-				<button class="layout__link" @click="changeLanguage('en')">
-					English
-				</button>
-				<button class="layout__link" @click="changeLanguage('uk')">
-					Українська
-				</button>
+				<router-link class="layout__link" to="/settings">{{
+					$t('settings')
+				}}</router-link>
 			</nav>
 			<div class="layout__page">
 				<main>
@@ -26,13 +23,7 @@
 </template>
 
 <script>
-export default {
-	methods: {
-		changeLanguage(language) {
-			this.$i18n.locale = language;
-		},
-	},
-};
+export default {};
 </script>
 
 <style lang="scss" scoped src="./base-layout.scss" />

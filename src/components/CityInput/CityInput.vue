@@ -42,7 +42,7 @@ const onInput = () => {
 };
 
 const fetchCities = async (query) => {
-	const url = `http://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(
+	const url = `https://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(
 		query
 	)}&limit=5&appid=${API_KEY}`;
 

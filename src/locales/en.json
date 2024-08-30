@@ -8,6 +8,9 @@
 	"Cancel": "Cancel",
 	"Temperature": "Temperature",
 	"Loading data...": "Loading data...",
-	"Day / 5 Days": "Day / 5 Days",
-	"Day / Night": "Day / Night"
+	"5 Days": "5 Days",
+	"Night": "Night",
+	"Day": "Day",
+	"1 Day": "1 Day",
+	"settings": "Settings"
 }

@@ -23,6 +23,8 @@
 		font-weight: 600;
 	}
 	&__fav-btn {
+		color: var(--color-2);
+		filter: drop-shadow(0px 0px 10px var(--color-1));
 		font-weight: 600;
 		background-color: inherit;
 		width: 100%;
@@ -64,6 +66,9 @@
 	}
 
 	&__temp {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
 		font-size: 12px;
 		position: absolute;
 		bottom: 5px;

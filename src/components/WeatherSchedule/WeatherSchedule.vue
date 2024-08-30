@@ -1,6 +1,6 @@
 <template>
-	<div>
-		<canvas ref="chartCanvas"></canvas>
+	<div class="weather-schedule">
+		<canvas class="weather-schedule__inner" ref="chartCanvas"></canvas>
 	</div>
 </template>
 
@@ -100,4 +100,4 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped lang="scss" src="./weather-schedule.scss" />
