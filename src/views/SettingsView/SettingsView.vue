@@ -1,7 +1,7 @@
 <template>
 	<div class="settings">
 		<button class="settings__btn" @click="toggleNight" type="button">
-			{{ isNight ? $t('Night') : $t('Day') }}
+			{{ isNight ? $t('Day') : $t('Night') }}
 		</button>
 		<button class="settings__btn" @click="toggleMonth" type="button">
 			{{ isMonth ? $t('5 Days') : $t('1 Day') }}

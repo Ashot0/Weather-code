@@ -23,6 +23,7 @@
 				{{ $t('Add to favourites') }}
 			</button>
 		</p>
+		<!-- Add clone btn 
 		<button
 			v-if="!$props.favorites"
 			class="weather-card__add-btn"
@@ -30,7 +31,7 @@
 			type="button"
 		>
 			+
-		</button>
+		</button> -->
 		<button
 			v-if="!$props.favorites"
 			class="weather-card__delete-btn"
@@ -55,6 +56,7 @@
 import { ref, watch, computed, onMounted } from 'vue';
 import { useStore } from 'vuex';
 import DeletePupup from '@/components/DeletePupup/DeletePupup';
+import { useI18n } from 'vue-i18n';
 
 export default {
 	props: {
@@ -63,6 +65,7 @@ export default {
 	},
 	components: { DeletePupup },
 	setup(props) {
+		const { locale } = useI18n();
 		const store = useStore();
 		const cityResponse = ref(null);
 		const isDataReady = ref(false);
@@ -81,7 +84,7 @@ export default {
 		const weatherIconSrc = computed(() => {
 			const icon = cityResponse.value?.weather[0].icon;
 			return `https://openweathermap.org/img/wn/${
-				isNight.value ? icon : icon.replace(/n$/, 'd')
+				isNight.value ? icon : icon.replace(/d$/, 'n')
 			}@2x.png`;
 		});
 
@@ -94,7 +97,7 @@ export default {
 		const fetchWeather = async () => {
 			const city =
 				typeof props.card === 'string' ? props.card : props.card.name;
-			const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=597035dd4f818cff0905e68e48f68b68&units=metric`;
+			const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&lang=${locale.value}&appid=597035dd4f818cff0905e68e48f68b68&units=metric`;
 
 			try {
 				const response = await fetch(url);
@@ -175,7 +178,14 @@ export default {
 		};
 
 		watch(() => props.card, handleDataReady, { immediate: true });
-
+		onMounted(() => {
+			setTimeout(() => {
+				if (!cityResponse.value) {
+					console.log('Data fetching error');
+					removeCity();
+				}
+			}, 4000);
+		});
 		return {
 			cityResponse,
 			addClone,

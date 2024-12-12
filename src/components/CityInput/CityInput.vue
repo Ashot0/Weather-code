@@ -31,6 +31,8 @@ const store = useStore();
 const query = ref('');
 const results = ref([]);
 
+const errorMessage = ref('');
+
 const onInput = () => {
 	const searchQuery = query.value.trim();
 
@@ -40,18 +42,37 @@ const onInput = () => {
 		results.value = [];
 	}
 };
+const isValidCity = (city) => {
+	return (
+		typeof city.name === 'string' &&
+		city.name.trim() !== '' &&
+		typeof city.country === 'string' &&
+		city.country.trim() !== ''
+	);
+};
 
 const fetchCities = async (query) => {
 	const url = `https://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(
 		query
 	)}&limit=5&appid=${API_KEY}`;
 
+	errorMessage.value = '';
 	try {
 		const response = await fetch(url);
 		const data = await response.json();
-		results.value = data;
+
+		// Фильтруем только валидные данные
+		const validData = data.filter(isValidCity);
+
+		if (validData.length === 0) {
+			errorMessage.value = 'No valid city data received.';
+		}
+
+		results.value = validData;
 	} catch (error) {
 		console.error('Error fetching cities:', error);
+		errorMessage.value = 'Failed to fetch cities. Please try again later.';
+		results.value = [];
 	}
 };
 const selectCity = (city) => {
